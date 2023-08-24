@@ -12,3 +12,4 @@ A command line tool written in Python that can generate 256-bit AES keys and use
 **python3 encoder.py -d ./file.type.encrypted ./key**  
 **python3 encoder.py -k**  
 
+### * The name of the file being unencrypted must end in '.encrypted' or the program will fail.
