@@ -8,7 +8,7 @@ A command line tool written in Python that can generate 256-bit AES keys and use
 **-k**    generates a 256-bit AES key and saves it as ./AES256key  
 
 ### Example usage:
-**encoderdecoder.py -e ./file.type <./key>**
-**encoderdecoder.py -d ./file.type.encrypted ./key**
-**encoderdecoder.py -k**
+**encoderdecoder.py -e ./file.type <./key>**  
+**encoderdecoder.py -d ./file.type.encrypted ./key**  
+**encoderdecoder.py -k**  
 
