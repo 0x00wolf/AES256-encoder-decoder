@@ -1,5 +1,5 @@
 ## AES256-encoder-decoder
-A command line tool written in Python that can generate 256-bit AES keys and uses cipher-block chaining to encrypt and decrypt files.
+A command line tool written in Python that can generate 256-bit AES keys and uses cipher-feedback encryption to encode and decode files.
 
 ### The program has four modes.
 **-h**    displays the help window  
