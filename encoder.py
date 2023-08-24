@@ -6,7 +6,6 @@ from Crypto.Cipher import AES
 import sys
 import os
 
-
 default_key_path = './AES256key'
 buffer_size = 65536 # 64kb
 banner = """
@@ -94,8 +93,9 @@ def encrypt(file_path, key_path):
         print('[-] Exiting...')
         sys.exit(1)
 
-def decrypt(file_path, key_path, remove_suffix):
+def decrypt(file_path, key_path):
     try:
+        remove_suffix = file_path.removesuffix('.encrypted')
         key = get_key(key_path)
         with open(file_path, 'rb') as input_file, \
             open(remove_suffix, 'wb') as output_file:
@@ -130,9 +130,8 @@ def main():
     key_path = sys.argv[3]
     if mode == '-e':
         encrypt(file_path, key_path)
-    elif mode == "-d":
-       remove_suffix = file_path.removesuffix('.encrypted')
-       decrypt(file_path, key_path, remove_suffix)
+    elif mode == '-d':
+       decrypt(file_path, key_path)
     else:
         print_usage()
     sys.exit(0)
