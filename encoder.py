@@ -1,4 +1,3 @@
-
 # This program is an AES-256 cryptographic tool for the command line.
 # It uses bit streaming to read in data so it can encrypt large files rapidly.
 # There are four modes. See the print_usage function below for more information.
@@ -27,15 +26,15 @@ def print_banner():
 
 def print_usage():
     print_banner()
-    print("[-] Modes:\n")
-    print("-h      display this message")
-    print("-e      encrypt")
-    print("-d      decrypt")
-    print("-k      Generate new AES-256 key to parent directory\n")
-    print("[-] Examples:\n")
-    print(">>decoder.py -e './file.type' './key'")
-    print(">>decoder.py -d './file.type.encrypted' ./key'")
-    print(">>decoder.py -k\n")
+    print('[-] Modes:\n')
+    print('-h      display this message')
+    print('-e      encrypt')
+    print('-d      decrypt')
+    print('-k      Generate new AES-256 key to parent directory\n')
+    print('[-] Examples:\n')
+    print('>>decoder.py -e <./file.type> <./key>')
+    print('>>decoder.py -d <./file.type.encrypted> <./key>')
+    print('>>decoder.py -k\n')
     sys.exit(0)
 
 def open_file(file_path):
@@ -43,29 +42,31 @@ def open_file(file_path):
         with open(file_path, 'r') as f:
             message = f.read()
     except Exception as e:
-        sys.stderr.write("[-] Error, problem with file path.")
-        sys.stderr.write(f"[!] Exception: {e}")
+        print_banner()
+        sys.stderr.write('[-] Error, problem with file path.')
+        sys.stderr.write(f'[!] Exception: {e}')
         sys.exit(1)
     return message
 
 def get_key(key_path):
-    with open(key_path, "rb") as f: 
+    with open(key_path, 'rb') as f: 
         key = f.read() 
     return key
 
 def generate_key():
     try:
         new_key = get_random_bytes(32) # 32 bytes * 8 = 256 bits (1 byte = 8 bits)
-        with open(default_key_path, "wb") as f: 
+        with open(default_key_path, 'wb') as f: 
             f.write(new_key)
         print_banner()
-        print("[+] Key successfully written to ./AES256key")
-        print("[-] Exiting...")
+        print('[+] Key successfully written to ./AES256key')
+        print('[-] Exiting...')
         sys.exit(0)
     except Exception as e:
-        sys.stderr.write("[-] Error, problem generating key.")
-        sys.stderr.write(f"[!] Exception: {e}")
-        print("[-] Exiting...")
+        print_banner()
+        sys.stderr.write('[-] Error, problem generating key.')
+        sys.stderr.write(f'[!] Exception: {e}')
+        print('[-] Exiting...')
         sys.exit(1)
 
 def encrypt(file_path, key_path):
@@ -83,13 +84,14 @@ def encrypt(file_path, key_path):
         # Delete original file? Comment out if no.
         os.remove(file_path)
         print_banner()
-        print("[+] File successfully encrypted.")
-        print(f"[+] Encoded file output to: {file_path}.encrypted")
-        print("[-] Exiting...")
+        print('[+] File successfully encrypted.')
+        print(f'[+] Encoded file output to: {file_path}.encrypted')
+        print('[-] Exiting...')
     except Exception as e:
-        sys.stderr.write("[-] Error!")
-        sys.stderr.write(f"[!] Exception: {e}")
-        print("[-] Exiting...")
+        print_banner()
+        sys.stderr.write('[-] Error!')
+        sys.stderr.write(f'[!] Exception: {e}')
+        print('[-] Exiting...')
         sys.exit(1)
 
 def decrypt(file_path, key_path, remove_suffix):
@@ -108,13 +110,14 @@ def decrypt(file_path, key_path, remove_suffix):
                 output_file.close()
         os.remove(file_path)
         print_banner()
-        print("\n[+] Success!")
-        print("[+] Encoded file output to: ./{file_path}.encrypted")
-        print("[-] Exiting...")
+        print('\n[+] Success!')
+        print('[+] Encoded file output to: ./{file_path}.encrypted')
+        print('[-] Exiting...')
     except Exception as e:
-        sys.stderr.write("[-] Error!")
-        sys.stderr.write(f"[!] Exception: {e}")
-        print("[-] Exiting...")
+        print_banner()
+        sys.stderr.write('[-] Error!')
+        sys.stderr.write(f'[!] Exception: {e}')
+        print('[-] Exiting...')
         sys.exit(1)
 
 def main():
