@@ -111,7 +111,7 @@ def decrypt(file_path, key_path):
         os.remove(file_path)
         print_banner()
         print('\n[+] Success!')
-        print('[+] Encoded file output to: ./{file_path}.encrypted')
+        print(f'[+] Encoded file output to: ./{file_path}.encrypted')
         print('[-] Exiting...')
     except Exception as e:
         print_banner()
